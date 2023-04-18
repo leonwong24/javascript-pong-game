@@ -9,18 +9,18 @@ var DIRECTION = {
 
 var rounds = [5, 5, 3, 3, 2];
 var colors = ['#1abc9c', '#2ecc71', '#3498db', '#e74c3c', '#9b59b6'];
-var device; 
-	// add mobile device detector and change player control scheme
-	if(navigator.userAgent.match(/(Android|webOs|iPhone|iPad|BlackBerry|Windows Phone)/i)){
-		console.log("this is mobile device");
-		device = "MOBILE";;
-	}
-	else{
-		console.log("this is desktop");
-		device = "DESKTOP";
-	}
-    //document.ontouchstart=listener;
-    //else document.onclick=listener;
+var device;
+// add mobile device detector and change player control scheme
+if (navigator.userAgent.match(/(Android|webOs|iPhone|iPad|BlackBerry|Windows Phone)/i)) {
+	console.log("this is mobile device");
+	device = "MOBILE";;
+}
+else {
+	console.log("this is desktop");
+	device = "DESKTOP";
+}
+//document.ontouchstart=listener;
+//else document.onclick=listener;
 
 // The ball object (The cube that bounces back and forth)
 var Ball = {
@@ -333,7 +333,7 @@ var Game = {
 
 	listen: function () {
 		// check device and change control scheme
-		if (device === "DESKTOP"){
+		if (device === "DESKTOP") {
 			document.addEventListener('keydown', function (key) {
 				// Handle the 'Press any key to begin' function and start the game.
 				if (Pong.running === false) {
@@ -353,35 +353,35 @@ var Game = {
 			document.addEventListener('keyup', function (key) { Pong.player.move = DIRECTION.IDLE; });
 		}
 		//MOBILE DEVICE CONTROL SCHEME
-		else{
-			document.addEventListener("click", function(){
+		else {
+			document.addEventListener("click", function () {
 				// Handle the 'Press any key to begin' function and start the game.
 				if (Pong.running === false) {
 					console.log("mobile start the game");
 					Pong.running = true;
 					window.requestAnimationFrame(Pong.loop);
 				}
-				
+
 				// Initate paddle movement
-				if(Pong.player.move === DIRECTION.IDLE){
+				if (Pong.player.move === DIRECTION.IDLE) {
 					Pong.player.move = DIRECTION.UP;
 				}
 				// inverting paddle movement
-				else if(Pong.player.move === DIRECTION.UP){
+				else if (Pong.player.move === DIRECTION.UP) {
 					Pong.player.move = DIRECTION.DOWN;
 				}
-				else{
+				else {
 					Pong.player.move = DIRECTION.UP;
 				}
 			});
 		}
 	},
-	
-	
+
+
 
 
 	// Reset the ball location, the player turns and set a delay before the next round begins.
-	_resetTurn: function(victor, loser) {
+	_resetTurn: function (victor, loser) {
 		this.ball = Ball.new.call(this, this.ball.speed);
 		this.turn = loser;
 		this.timer = (new Date()).getTime();
@@ -391,7 +391,7 @@ var Game = {
 	},
 
 	// Wait for a delay to have passed after each turn.
-	_turnDelayIsOver: function() {
+	_turnDelayIsOver: function () {
 		return ((new Date()).getTime() - this.timer >= 1000);
 	},
 
@@ -405,3 +405,5 @@ var Game = {
 
 var Pong = Object.assign({}, Game);
 Pong.initialize();
+
+module.exports = { Pong };

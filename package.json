@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "canvas": "^2.11.2",
+    "jsdom": "^21.1.1",
+    "mocha": "^10.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
